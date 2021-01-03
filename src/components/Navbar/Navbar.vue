@@ -1,8 +1,8 @@
 <template>
-  <nav class="nav">
+  <nav class="nav" v-if="user">
       <div>
-          <p>Swx</p>
-          <p class="email">email:</p>
+          <p>Swx {{user.displayName}}</p>
+          <p class="email">email: {{user.email}}</p>
       </div>
       <button @click="handleLogout">Atsijungti</button>
   </nav>
@@ -10,10 +10,12 @@
 
 <script>
 import useLogout from "../../composables/useLogout"
+import getUser from "../../composables/getUser"
 
 export default {
     setup() {
         const {error, logout} = useLogout();
+        const { user } = getUser();
 
         const handleLogout = async () => {
             await logout();
@@ -22,7 +24,7 @@ export default {
             }
         }
 
-        return { handleLogout }
+        return { handleLogout, user }
     }
 }
 </script>
