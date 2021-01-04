@@ -1,20 +1,24 @@
 import { ref, watchEffect } from "vue";
 import { projectFirestore } from "../firebase/config";
 
-const getCollection = (collection) => {
+const getMessagesCollection = (collection) => {
   const error = ref(null);
   const documents = ref(null);
 
-  const collectionRef = projectFirestore.collection(collection);
+  let collectionRef = projectFirestore
+    .collection(collection)
+    .orderBy("createdAt");
 
   const onsub = collectionRef.onSnapshot(
     (snap) => {
+      console.log("snapshot");
       let results = [];
       snap.docs.forEach((doc) => {
-        results.push({ ...doc.data() });
+        doc.data().createdAt && results.push({ ...doc.data(), id: doc.id });
       });
 
       documents.value = results;
+      error.value = null;
     },
     (err) => {
       console.log(err.message);
@@ -31,4 +35,4 @@ const getCollection = (collection) => {
   return { error, documents };
 };
 
-export default getCollection;
+export default getMessagesCollection;

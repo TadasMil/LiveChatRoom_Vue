@@ -1,5 +1,9 @@
 import { ref } from "vue";
-import { projectAuth } from "../firebase/config";
+import {
+  firebaseAnalytics,
+  projectAuth,
+  projectFirestore,
+} from "../firebase/config";
 
 const error = ref(null);
 
@@ -14,8 +18,8 @@ const signup = async (email, password, name) => {
     if (!response) {
       throw new Error("Registracija nepavyko");
     }
-
     await response.user.updateProfile({ displayName: name });
+    console.log(response);
 
     return response;
   } catch (err) {

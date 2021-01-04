@@ -7,7 +7,7 @@
     </div>
     <div v-else>
     <h3>Registracija</h3>
-        <SignupForm @signup="enterChat"/>
+        <SignupForm @signup="enterLogin"/>
     <h5 @click="handleFormChange">Turi paskyrą? <span>Prisijunk</span></h5>
     </div>
   </div>
@@ -36,8 +36,12 @@ export default {
         const enterChat = () => {
             router.push({name: "Chatroom"})
         }
+
+        const enterLogin = () => {
+            formToggle.value = !formToggle.value;
+        }
         
-        return { formToggle, handleFormChange, enterChat }
+        return { formToggle, handleFormChange, enterChat, enterLogin }
     }
 }
 </script>

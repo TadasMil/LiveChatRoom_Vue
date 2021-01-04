@@ -1,7 +1,7 @@
 <template>
   <nav class="nav" v-if="user">
       <div>
-          <p>Swx {{user.displayName}}</p>
+          <p>Swx, <span>{{user.displayName}}</span></p>
           <p class="email">email: {{user.email}}</p>
       </div>
       <button @click="handleLogout">Atsijungti</button>
@@ -47,5 +47,9 @@ export default {
     nav p.email{
         font-size: 14px;
         color: #999;
+    }
+
+    .nav p span{
+        font-weight: bold;
     }
 </style>

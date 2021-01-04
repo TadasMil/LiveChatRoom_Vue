@@ -3,24 +3,29 @@
       <div v-if="error">
           {{ error }}
       </div>
-      <div class="messages" v-if="documents" ref="messagesBlock">
-          <div v-for="document in formattedDocuments" :key="document.id" class="single-message">
-              <span class="created-at">{{ document.createdAt }}</span>
-              <span class="name">{{ document.name }}:</span>
-              <span class="message">{{ document.message }}</span>
-          </div>
+      <div class="messages-block" ref="messagesBlock">
+        <div class="messages" v-if="documents">
+            <div v-for="document in formattedDocuments" :key="document.id" class="single-message">
+                <span class="created-at">{{ document.createdAt }}</span>
+                <span class="name">{{ document.name }}:</span>
+                <span class="message">{{ document.message }}</span>
+            </div>
+        </div>
+        <div v-else>
+            <span>Nėra pranešimų</span>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-import getCollection from "../../composables/getCollection"
+import getMessagesCollection from "../../composables/getMessagesCollection"
 import { formatDistanceToNow } from "date-fns"
 import { computed, onMounted, onUpdated, ref } from 'vue';
 
 export default {
     setup() {
-        const { error, documents } = getCollection('messages');
+        const { error, documents } = getMessagesCollection('messages');
 
         const formattedDocuments = computed(() => {
             if(documents.value) {
@@ -49,9 +54,6 @@ export default {
         padding: 30px 20px;
     }
 
-    .single-message {
-        margin: 18px 0;
-    }
 
     .created-at{
         display: block;
@@ -65,8 +67,20 @@ export default {
         margin-right: 6px;
     }
 
-    .messages {
-        max-height: 300px;
+    .messages-block{
+        width: 100%;
         overflow: auto;
+        max-height: 300px;
+    }
+
+    .messages {
+        display: inline-flex;
+        flex-direction: column;
+    }
+
+    .single-message {
+        margin: 10px 0;
+        display: inline;
+        position: relative;
     }
 </style>
