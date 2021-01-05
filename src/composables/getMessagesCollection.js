@@ -11,7 +11,6 @@ const getMessagesCollection = (collection) => {
 
   const onsub = collectionRef.onSnapshot(
     (snap) => {
-      console.log("snapshot");
       let results = [];
       snap.docs.forEach((doc) => {
         doc.data().createdAt && results.push({ ...doc.data(), id: doc.id });
@@ -21,7 +20,7 @@ const getMessagesCollection = (collection) => {
       error.value = null;
     },
     (err) => {
-      console.log(err.message);
+      console.log(err);
       documents.value = null;
       error.value = "Serverio problema";
     }

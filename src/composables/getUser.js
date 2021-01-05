@@ -10,7 +10,6 @@ const user = ref(projectAuth.currentUser);
 //This function identifies the user, if no user it returns NULL
 // _user is the incoming user
 projectAuth.onAuthStateChanged((_user) => {
-  console.log("User state changed. Current user is:", _user);
   user.value = _user;
 });
 

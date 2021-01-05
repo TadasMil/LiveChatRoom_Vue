@@ -31,7 +31,7 @@ export default {
             await signup(email.value, password.value, name.value)
 
             if(!error.value){
-                const userEntry = { name: user.value.displayName, role: "User", id: user.value.uid }
+                const userEntry = { name: user.value.displayName, role: "User", id: user.value.uid, isActive: false }
                 await addDocument(userEntry)
                 context.emit('signup')
             }

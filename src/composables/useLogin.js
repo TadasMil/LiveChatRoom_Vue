@@ -1,5 +1,6 @@
 import { ref } from "vue";
-import { projectAuth } from "../firebase/config";
+import { projectAuth, projectFirestore } from "../firebase/config";
+import { useUserActiveState } from "./useUserActiveState";
 
 const error = ref(null);
 
@@ -11,7 +12,10 @@ const login = async (email, password) => {
       email,
       password
     );
+
     error.value = null;
+
+    await useUserActiveState("users", response.user.uid, true);
 
     return response;
   } catch (err) {

@@ -4,15 +4,14 @@
       <div>
             <div class="user-name-status">
                 <h4>Vardas: <span>{{userInfo.name}}</span></h4>
-                <span class="active" v-if="isActive">●</span>
-                <span class=unactive v-else>●</span>
+                <ActiveState :activeState="userInfo.isActive"/>
             </div>
             <h4>Pareigos: <span>{{userRole}}</span></h4>
       </div>
         <IconButton type="button" @click="onSettingsClick" icon="settings" class="button"/>
     </div>
     <div v-if="showSettings">
-        <ManageRole />
+        <ManageRole :userId="userInfo.id"/>
     </div>
   </div>
 </template>
@@ -22,6 +21,7 @@ import { computed, onMounted, ref } from 'vue'
 
 import IconButton from "../../UI/Buttons/IconButton"
 import ManageRole from "../../AdminPanel/ManageRole/ManageRole"
+import ActiveState from "../../UI/ActiveState/ActiveState"
 
 export default {
     props: {
@@ -31,16 +31,15 @@ export default {
     components: {
         IconButton,
         ManageRole,
+        ActiveState
     },
 
     setup(props, context) {
-        
         const showSettings = ref(false);
-        const isActive = ref(false);
 
         const onSettingsClick = () => {
             showSettings.value = !showSettings.value;
-        }  
+        }
 
         const userRole = computed(() => {
             if(props.userInfo?.role === "Admin"){
@@ -50,7 +49,7 @@ export default {
             return "Vartotojas"
         })
 
-        return { onSettingsClick, showSettings, userRole, isActive }
+        return { onSettingsClick, showSettings, userRole }
     }
 }
 </script>

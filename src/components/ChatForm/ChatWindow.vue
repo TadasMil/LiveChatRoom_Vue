@@ -7,8 +7,12 @@
         <div class="messages" v-if="documents">
             <div v-for="document in formattedDocuments" :key="document.id" class="single-message">
                 <span class="created-at">{{ document.createdAt }}</span>
-                <span class="name">{{ document.name }}:</span>
-                <span class="message">{{ document.message }}</span>
+                <div class="name-message-block">
+                    <div class="name-active-block">
+                        <span class="name">{{ document.name }}:</span>
+                    </div>
+                    <span class="message">{{ document.message }}</span>
+                </div>
             </div>
         </div>
         <div v-else>
@@ -82,5 +86,13 @@ export default {
         margin: 10px 0;
         display: inline;
         position: relative;
+    }
+
+    .name-message-block{
+        display: flex;
+    }
+
+    .name-active-block{
+        display: flex;
     }
 </style>

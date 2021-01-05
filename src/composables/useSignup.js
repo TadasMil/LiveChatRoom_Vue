@@ -19,7 +19,6 @@ const signup = async (email, password, name) => {
       throw new Error("Registracija nepavyko");
     }
     await response.user.updateProfile({ displayName: name });
-    console.log(response);
 
     return response;
   } catch (err) {

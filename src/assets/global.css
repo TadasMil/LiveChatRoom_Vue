@@ -42,7 +42,7 @@ button:hover {
 
 .active {
   margin-left: 3px;
-  color: green;
+  color: rgb(22, 189, 22);
 }
 
 .unactive {
