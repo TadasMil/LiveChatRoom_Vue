@@ -3,12 +3,12 @@
     <div v-if="formToggle">
     <h3>Prisijungti</h3>
         <LoginForm @login="enterChat"/>
-    <h5 @click="handleFormChange">Neturi paskyros? <span>Registruokis</span></h5>
+    <h5 @click="handleFormChange">Neturi paskyros? <span id="first-login-register">Registruokis</span></h5>
     </div>
     <div v-else>
     <h3>Registracija</h3>
         <SignupForm @signup="enterLogin"/>
-    <h5 @click="handleFormChange">Turi paskyrą? <span>Prisijunk</span></h5>
+    <h5 @click="handleFormChange">Turi paskyrą? <span id="account-exists-login">Prisijunk</span></h5>
     </div>
   </div>
 </template>

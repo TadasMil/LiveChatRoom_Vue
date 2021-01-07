@@ -6,9 +6,9 @@
                 <h4>Vardas: <span>{{userInfo.name}}</span></h4>
                 <ActiveState :activeState="userInfo.isActive"/>
             </div>
-            <h4>Pareigos: <span>{{userRole}}</span></h4>
+            <h4 id="user-role">Pareigos: <span>{{userRole}}</span></h4>
       </div>
-        <IconButton type="button" @click="onSettingsClick" icon="settings" class="button"/>
+        <IconButton type="button" @click="onSettingsClick" icon="settings" class="settings-button"/>
     </div>
     <div v-if="showSettings">
         <ManageRole :userId="userInfo.id"/>
@@ -60,6 +60,20 @@ export default {
         border-radius: 20px;
         background: #ccc;
         padding: 10px 10px;
+    }
+
+    .settings-button{
+        background: transparent;
+        padding: 0;
+    }
+
+    .settings-button:hover{
+        background: transparent;
+    }
+
+    .settings-button svg {
+        width: 25px;
+        height: 25px;
     }
 
     .user{

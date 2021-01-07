@@ -1,15 +1,17 @@
 <template>
-      <div class="manage-role">
-      <form>
-        <h5>Pakeisti vartotojo rolę:</h5>
-        <select v-model="role">
-            <option value="User">Vartotojas</option>
-            <option value="Admin">Administratorius</option>
-        </select>
-      </form>
-    <p>*Tai suteiks vartotojui daugiau privilegijų</p>
-  </div>
-      <Button name="Išsaugoti pakeitimus" class="delete-button" @click="onChangeRole"/>
+    <div id="manage-user-role">
+        <div class="manage-role">
+            <form>
+                <h5>Pakeisti vartotojo rolę:</h5>
+                <select v-model="role" class="select-user-role">
+                    <option value="User">Vartotojas</option>
+                    <option value="Admin">Administratorius</option>
+                </select>
+            </form>
+            <p>*Tai suteiks vartotojui daugiau privilegijų</p>
+        </div>
+      <Button name="Išsaugoti pakeitimus" class="save-new-role" @click="onChangeRole"/>
+    </div>
 </template>
 
 <script>
@@ -58,6 +60,10 @@ export default {
     form h5{
         font-size: 15px;
         margin-right: 10px;   
+    }
+
+    .save-new-role{
+        margin: 10px 0;
     }
 
 </style>

@@ -20,6 +20,7 @@ import getCollection from "../../composables/getCollection"
 import SingleUser from "./SingleUser/SingleUser"
 import DeleteMessages from "../AdminPanel/DeleteMessages/DeleteMessages"
 import getMessagesCollection from '../../composables/getMessagesCollection';
+import {projectAuth} from "../../firebase/config"
 
 export default {
     props: ['users'],

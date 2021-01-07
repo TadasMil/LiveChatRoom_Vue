@@ -1,15 +1,16 @@
 <template>
-  <form @submit.prevent="handleSubmitForm">
+  <form @submit.prevent="handleSubmitForm" class="login-signup">
       <input type="email" placeholder="E-paštas" v-model="email" required>
       <input type="password" placeholder="Slaptažodis" v-model="password" required>
       <div class="error">{{error}}</div>
-      <button type="submit">Prisijungti</button>
+      <button type="submit" class="login">Prisijungti</button>
   </form>
 </template>
 
 <script>
 import { ref } from 'vue'
 import useLogin from "../../composables/useLogin"
+import{projectAuth} from "../../firebase/config"
 
 export default {
     setup(props, context){

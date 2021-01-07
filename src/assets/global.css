@@ -49,3 +49,12 @@ button:hover {
   margin-left: 3px;
   color: red;
 }
+
+@media (max-width: 400px) {
+  .welcome form {
+    width: 90%;
+  }
+  .login-signup input {
+    width: 90%;
+  }
+}

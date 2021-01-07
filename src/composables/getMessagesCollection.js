@@ -1,5 +1,6 @@
 import { ref, watchEffect } from "vue";
 import { projectFirestore } from "../firebase/config";
+import { decryptMessage } from "./encryption";
 
 const getMessagesCollection = (collection) => {
   const error = ref(null);
@@ -13,7 +14,11 @@ const getMessagesCollection = (collection) => {
     (snap) => {
       let results = [];
       snap.docs.forEach((doc) => {
-        doc.data().createdAt && results.push({ ...doc.data(), id: doc.id });
+        const decryptedMessage = decryptMessage(doc.data().message).toString(
+          CryptoJS.enc.Utf8
+        );
+        const newMessageData = { ...doc.data(), message: decryptedMessage };
+        doc.data().createdAt && results.push({ ...newMessageData, id: doc.id });
       });
 
       documents.value = results;

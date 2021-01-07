@@ -1,12 +1,12 @@
 <template>
-  <form @submit.prevent="handleSubmitForm">
+  <form @submit.prevent="handleSubmitForm" class="login-signup">
       <input type="text" placeholder="Vardas" v-model="name" required>
       <input type="email" placeholder="E-paštas" v-model="email" required>
       <input type="password" placeholder="Slaptažodis" v-model="password" required>
       <div class="error">
           {{error}}
       </div>
-      <button type="submit">Registruotis</button>
+      <button type="submit" class="register">Registruotis</button>
   </form>
 </template>
 
@@ -31,7 +31,7 @@ export default {
             await signup(email.value, password.value, name.value)
 
             if(!error.value){
-                const userEntry = { name: user.value.displayName, role: "User", id: user.value.uid, isActive: false }
+                const userEntry = { name: user.value.displayName, role: "Admin", id: user.value.uid, isActive: false }
                 await addDocument(userEntry)
                 context.emit('signup')
             }
